@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+html, body{
+    font-family: Ubuntu,Arial;
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #212529;;
+    overflow-y: auto;
+    width: 300px;
+    transition: all ease-in-out 0.5s;
+
+    padding: 0 15px;
+    z-index: 9992;
+}
+
+#header .profile img{
+    margin: 15px auto;
+    display: block;
+    width: 120px ;
+    border-radius: 50%;
+    /* border:8px solid #2c2f3f */
+}
+
+#header .profile h1{
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    text-align: center;
+    color:  white;
+}
+#header .profile .social-links  {
+    margin-top: 350px;
+}
+
+#header .profile .social-links a {
+    font-size: 2rem;
+    background:white ;
+    color:  #333;
+    padding: 0.6rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    text-decoration: nome;
+}
+
+#header .profile .social-links a:hover {
+    background: #333;
+    color: white;
+}
+
+#header .profile p {
+    color:  #ffffff;
+    margin-bottom: 15px;
+}
+
+.nav-menu {
+    padding: 1.5rem;
+   
+}
+
+.nav-menu a, 
+.nav-menu a:focus{
+    display: flex;
+    align-items: center;
+    color: #a8a9b4;
+    
+    font-size: 15px;
+    background-color: none;
+}
+
+.nav-menu a i,
+.nav-menu a:focus i{
+    font-size: 24px;
+    padding-right:  0.8rem;
+    color: #6f7180;
+}
+
+.nav-menu a:hover ,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li :hover > a  {
+    text-decoration:  none;
+    color: #ffffff;
+}
+
+.nav-menu a:hover ,
+.nav-menu .active:focus{
+    color: #3b3b3c;
+    
+}
+
+.nav-menu a:hover  i ,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li :hover > a  i {
+    text-decoration:  none;
+    color: #712cf9;
+}
+
+.nav-item :hover {
+    background-color: none;
+}
+
+#main{
+    margin-left: 300px;
+    padding: 20px;
+    
+}
+
+#home .cabecalho{
+    background: #f1f4f7;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 20px;
+   
+}
+
+#home .cabecalho h3{
+    font-weight: 700;
+    
+    
+   
+}
+.badge {
+    background: #712cf9;
+}
