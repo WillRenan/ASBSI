@@ -25,10 +25,9 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/index"><i class="bi bi-house-door-fill"></i>  Home</a>
                 </li>
-                
                 <li class="nav-item">
-                    <a class="nav-link" href="/add"><i class="bi bi-currency-exchange"></i>  Comprar</a>
-                  </li>
+                  <a class="nav-link" href="#"><i class="bi bi-currency-exchange"></i>  Comprar</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/fundos-imobiliarios"><i class="bi bi-building-fill"></i>  Fundos Imobiliários</a>
                 </li>
@@ -54,16 +53,16 @@
     <main id="main">
 
         
-            <h1> novo usuario</h1>
-            <form action="/add" class="container" method="post">
+            <h1> Edidar {{usuario.nome}} </h1>
+            <form action="/edit/{{usuario.id}}" class="container" method="POST">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" name="nome" id="nome" placeholder="nome" class="form-control">
+                        <input type="text" name="nome" id="nome" placeholder="nome" class="form-control" value="{{usuario.nome}}">
                     <div class="col-md-6">
-                        <input type="text" name="email" id="email" placeholder="email" class="form-control">
+                        <input type="text" name="email" id="email" placeholder="email" class="form-control" value="{{usuario.email}}">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="senha" id="senha" placeholder="senha" class="form-control">
+                        <input type="text" name="senha" id="senha" placeholder="senha" class="form-control" value="{{usuario.senha}}">
                     </div>
 
                 </div>
