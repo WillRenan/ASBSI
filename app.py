@@ -1,3 +1,4 @@
+from dynaconf import FlaskDynaconf
 from curses import flash
 from flask import Flask, render_template, redirect, Response, request, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -91,7 +92,7 @@ with app.app_context():
 
 
 #-------------------------------ROTAS--------------------------------------------------
-@app.route("/")
+
 @app.route("/index")
 @login_required
 def index():
@@ -129,7 +130,7 @@ def edit(id):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('edit.html', usuario = usuario)
-
+@app.route("/")
 @app.route('/login', methods =['GET','POST'])
 def login():
 
@@ -151,6 +152,7 @@ def login():
 
     return render_template('login.html')
 
+
 @app.route('/cadastrousuario', methods =['GET','POST'])
 def cadastro():
     if request.method == 'POST':
@@ -164,6 +166,11 @@ def cadastro():
 
     return render_template('cadastrousuario.html')
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
   

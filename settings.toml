@@ -1,0 +1,3 @@
+[default]
+app.config['TITLE'] = "MyWallet"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mywallet.sqlite3'

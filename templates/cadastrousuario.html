@@ -31,17 +31,17 @@
 					<input type="password" class="form-control" name="senha" placeholder="Senha">
 				</div>
 				
-				<div class="form-group form-check">
-					<input type="checkbox" class="form-check-input" name="">
-					<label class="form-check-label">Lembre-me</label>
-				</div>
+				
                 
                 <button  type="submit" class="btn btn-primary btn-block  ">Salvar</button>
-                <button  type="submit" action="/index" class="btn btn-primary btn-block btn-danger ">Cancelar</button>
                 
-
-                
-            </form>
+			</form>
+			
+			
+				<form class="container form-container mt-4 " action="{{ url_for('login') }}" method="get">
+					<button type="submit" class="btn btn-primary btn-block btn-danger ">Cancelar</button>
+				</form>
+			
 		</section>
 	</div>
 </div>
