@@ -1,3 +1,4 @@
 [default]
-app.config['TITLE'] = "MyWallet"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mywallet.sqlite3'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///mywallet.sqlite3'
+SECRETY_KEY = "007"
+  

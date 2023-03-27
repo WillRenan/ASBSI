@@ -12,8 +12,9 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy_serializer import SerializerMixin
 
 app = Flask(__name__)
+FlaskDynaconf(app)
 Bootstrap(app)
-app.config['TITLE'] = "MyWallet"
+
 
 #-------------------------------DATABASE E TABELAS--------------------------------------------------
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mywallet.sqlite3'
