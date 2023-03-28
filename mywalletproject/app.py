@@ -7,10 +7,7 @@ from mywalletproject.ext import bootstrap
 
 #BLUEPRINTS 
 from mywalletproject.blueprints import views
-
-
-
-
+from mywalletproject.blueprints import restapi
 
 app = Flask(__name__)
 
@@ -19,13 +16,12 @@ database.init_app(app)
 auth.init_app(app)
 views.init_app(app)
 bootstrap.init_app(app)
+restapi.init_app(app)
 
 
 
 import os
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", default="um_segredo_muito_secreto")
-
-
 if __name__ == '__main__':
   
     app.run(debug=True)
