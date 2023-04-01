@@ -84,3 +84,40 @@ def init_app(app):
     def logout():
         logout_user()
         return redirect(url_for('login'))
+    
+    """ ------------------------------------------------- rotas dos templates-------------------------------------------- """
+    @app.route('/login_temp', methods =['GET','POST'])
+    def login_temp():
+        print("www")
+        if request.method == 'POST':
+
+            email = request.form['email']
+            senha = request.form['senha']
+            user = User.query.filter_by(email=email).first()
+            
+            
+            if user and check_password_hash(user.senha, senha):
+                print("Senha correta!")
+                login_user(user)
+                return redirect(url_for('index'))
+                
+            else:
+                abort(404)
+                return redirect(url_for('login_temp'))
+
+        return render_template('login_temp.html')
+    
+    @app.route('/cadastro_usuario_temp', methods =['GET','POST'])
+    def cadastro_usuario_temp():
+        if request.method == 'POST':
+            
+            usuario = User(request.form['nome'],request.form['email'],request.form['senha'])
+            db.session.add(usuario)
+            db.session.commit()
+            return redirect(url_for('login_temp'))
+        
+
+
+        return render_template('cadastro_usuario_temp.html')
+
+
