@@ -135,7 +135,8 @@ def init_app(app):
         titulo = "Ações"
         if request.method == 'POST':
             #usuario = User.query.get(current_user.id)  # busca o usuário com id 
-            acao = Acoes(request.form['nome_acao'], request.form['codigo_acao'])
+            acao = Acoes(request.form['nome_acao'], request.form['codigo_acao'],
+                         usuario_id=current_user.id)
 
 
             #acao = Acoes(request.form['nome_acao'],request.form['codigo_acao'])
@@ -143,6 +144,6 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for('acoes'))
         
-        usuario = current_user
+        usuario = current_user.id
         return render_template('acoes.html', titulo =titulo,usuario= usuario)
 
