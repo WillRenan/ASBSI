@@ -116,8 +116,12 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for('login_temp'))
         
-
+    
 
         return render_template('cadastro_usuario_temp.html')
-
+    
+    @app.route('/usuarios_tabelas_temp')
+    def usuarios_tabelas_temp():
+        usuarios = User.query.all()
+        return render_template( 'usuarios_tabelas_temp.html',usuarios =usuarios)
 
