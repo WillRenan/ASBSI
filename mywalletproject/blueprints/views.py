@@ -124,4 +124,13 @@ def init_app(app):
     def usuarios_tabelas_temp():
         usuarios = User.query.all()
         return render_template( 'usuarios_tabelas_temp.html',usuarios =usuarios)
+    
+    @app.route('/template_base')
+    def template_base():
+        return render_template('template_base.html')
+    
+    @app.route('/acoes')
+    def acoes():
+        titulo = "Ações"
+        return render_template('acoes.html', titulo =titulo)
 
