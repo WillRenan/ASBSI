@@ -43,8 +43,8 @@ class Acoes(db.Model, SerializerMixin):
     nome_acao = db.Column(db.String(80), unique=True, nullable=False)
     codigo_acao = db.Column(db.String(80), unique=True, nullable=False)
     
-    def __init__(self, nome, codigo_acao):
-        self.nome = nome
+    def __init__(self, nome_acao, codigo_acao):
+        self.nome_acao = nome_acao
         self.codigo_acao = codigo_acao
 
 class FundosImobiliarios(db.Model, SerializerMixin):

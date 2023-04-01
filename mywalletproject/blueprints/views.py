@@ -1,5 +1,5 @@
 from flask import  abort, render_template, redirect, Response, request, url_for
-from ..ext.auth import login_required, logout_user, login_user, load_user
+from ..ext.auth import login_required, logout_user, login_user, load_user,current_user
 from curses import flash
 
 from ..ext.database import User, Acoes,  FundosImobiliarios, db, check_password_hash
@@ -129,8 +129,20 @@ def init_app(app):
     def template_base():
         return render_template('template_base.html')
     
-    @app.route('/acoes')
+    @app.route('/acoes', methods =['GET','POST'])
+    @login_required
     def acoes():
         titulo = "Ações"
-        return render_template('acoes.html', titulo =titulo)
+        if request.method == 'POST':
+            #usuario = User.query.get(current_user.id)  # busca o usuário com id 
+            acao = Acoes(request.form['nome_acao'], request.form['codigo_acao'])
+
+
+            #acao = Acoes(request.form['nome_acao'],request.form['codigo_acao'])
+            db.session.add(acao)
+            db.session.commit()
+            return redirect(url_for('acoes'))
+        
+        usuario = current_user
+        return render_template('acoes.html', titulo =titulo,usuario= usuario)
 

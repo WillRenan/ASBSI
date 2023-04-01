@@ -2,11 +2,21 @@
 {% extends 'template_base.html' %}
 
 {% block content %}
+<style>
+    #mainContent{
+        padding: 15px;
+    }
+    .sub-titulo{
+        margin: 15px 0 ;
+    }
+
+</style>
+
 <div class="container-fluid px-4">
-    <h1 class="mt-4">{{titulo}}</h1>
+    <h1 class="mt-4">{{titulo}} {{usuario.id}}</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Tables</li>
+        <li class="breadcrumb-item active">Ações</li>
     </ol>
     <div class="card mb-4">
         <div class="card-body">
@@ -15,13 +25,100 @@
             .
         </div>
     </div>
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table me-1"></i>
-            DataTable Example
+    <div class="card mb-6 " id="mainContent" >
+        <div class="card-header sub-titulo" >
+            <!-- <i class="fas fa-table me-1"></i> -->
+            <i class="fas-sharp fa-solid fa-plus" style="color: #1f2123;"></i>
+            Cadatro Ações
         </div>
+        <form   action="/acoes"  method="post">
+            <div class="row mb-3">
+                <!-- <div class="col-md-12">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <input class="form-control" name="nome_acao" id="inputFirstName" type="text" placeholder="Nome da Ação" />
+                        <label for="inputFirstName">Nome da Ação</label>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                        <label for="inputLastName">Last name</label>
+                    </div>
+                </div> -->
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="codigo_acao" id="inputEmail" type="text" placeholder="Cogido da ação" />
+                <label for="inputEmail">Código da Ação</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="nome_acao" id="inputEmail" type="text" placeholder="Cogido da ação" />
+                <label for="inputEmail">Ação</label>
+            </div>
+            <!-- <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
+                        <label for="inputPassword">Password</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                        <label for="inputPasswordConfirm">Confirm Password</label>
+                    </div>
+                </div>
+            </div> -->
+            <div class="mt-4 mb-0">
+                <div class="row col xs-6">
+                    <button type="submit" class="btn bnt-block btn-success">Salvar</button>
+                </div>
+            </div>
+        </form>
+        <div class="card-header sub-titulo" >
+            <!-- <i class="fas fa-table me-1"></i> -->
+            Ações
+        </div>
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Senha</th>
+                    <th>Ação</th>
+                   
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>>Nome/th>
+                    <th>E-mail</th>
+                    <th>Senha</th>
+                    <th>Ação</th>
+                    
+                </tr>
+            </tfoot>
+            <tbody>
+               
+                    {% for u in acoes%}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.nome}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.senha}}</td>
+                <td>
+                    <a href="/edit/{{u.id}}"> Editar</a>
+                    <a href="/delete/{{u.id}}"> Deletar</a>
+                </td>
+            </tr>
+            {%endfor%}
+                   
+                
+            </tbody>
         
-       
+            
+        </table>
         <!-- Conteúdo aqui  -->
     </div>
 </div>
