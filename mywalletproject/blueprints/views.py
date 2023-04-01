@@ -93,20 +93,23 @@ def init_app(app):
         return render_template('cadastro_usuario_temp.html')
     
     @app.route('/usuarios_tabelas_temp')
+    @login_required
     def usuarios_tabelas_temp():
         usuarios = User.query.all()
         return render_template( 'usuarios_tabelas_temp.html',usuarios =usuarios)
     
     @app.route('/template_base')
+    @login_required
     def template_base():
         return render_template('template_base.html')
     
     @app.route('/acoes', methods =['GET','POST'])
     @login_required
     def acoes():
-        titulo = "Ações"
+        titulo = "Ações  "
+        usuario = current_user.id
+
         if request.method == 'POST':
-            #usuario = User.query.get(current_user.id)  # busca o usuário com id 
             acao = Acoes(nome_acao=request.form['nome_acao'], 
                          codigo_acao=request.form['codigo_acao'],
                          quantidade=request.form['quantidade'],
@@ -114,17 +117,39 @@ def init_app(app):
                          data_compra=request.form['data_compra'] ,   
                          usuario_id=current_user.id)
 
-
-            #acao = Acoes(request.form['nome_acao'],request.form['codigo_acao'])
+            #PERSISTENCIA NO BANCO DE DADOS
             db.session.add(acao)
             db.session.commit()
             return redirect(url_for('acoes'))
         
         acoes = Acoes.query.filter_by(usuario_id=current_user.id).all()
         
-        usuario = current_user.id
         return render_template('acoes.html', titulo =titulo,usuario= usuario,acoes=acoes)
 
-    @app.route('/fundo_imobiliario')
+    @app.route('/fundo_imobiliario', methods=['GET','POST'])
+    @login_required
     def fundo_imobiliario():
-        return render_template('fundo_imobiliario.html')
+        titulo = "Fundos Imobiliários"
+        tituloSingular = "Fundo Imobiliário"
+        usuario = current_user
+
+        if request.method == 'POST':
+            fundos = FundosImobiliarios(nome_fii=request.form['nome_fii'], 
+                         codigo_fii=request.form['codigo_fii'],
+                         quantidade=request.form['quantidade'],
+                         preco_unitario=request.form['preco_unitario'],
+                         data_compra=request.form['data_compra'] ,   
+                         usuario_id=current_user.id)
+
+            #PERSISTENCIA NO BANCO DE DADOS
+            db.session.add(fundos)
+            db.session.commit()
+            return redirect(url_for('fundo_imobiliario'))
+        
+        fundosImobiliarios = FundosImobiliarios.query.filter_by(usuario_id=current_user.id).all()
+        
+        return render_template('fundo_imobiliario.html',
+                               usuario=usuario, 
+                               titulo=titulo,
+                               tituloSingular=tituloSingular,
+                               fundosImobiliarios=fundosImobiliarios)

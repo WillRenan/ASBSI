@@ -73,8 +73,8 @@ class FundosImobiliarios(db.Model, SerializerMixin):
     preco_unitario = db.Column(db.Float, nullable=False)
     data_compra = db.Column(db.String(10), nullable=False)
 
-    def __init__(self, nome,codigo_fii, usuario_id, quantidade, preco_unitario,data_compra):
-        self.nome = nome
+    def __init__(self, nome_fii,codigo_fii, usuario_id, quantidade, preco_unitario,data_compra):
+        self.nome_fii = nome_fii
         self.codigo_fii = codigo_fii
         self.usuario_id = usuario_id
         self.quantidade  =  quantidade

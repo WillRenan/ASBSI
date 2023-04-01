@@ -19,34 +19,34 @@
 </style>
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">{{titulo}} {{usuario}}</h1>
+    <h1 class="mt-4">{{titulo}} - {{usuario.nome}}</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Ações</li>
+        <li class="breadcrumb-item active">{{titulo}}</li>
     </ol>
     <div class="card mb-4">
         <div class="card-body">
-            Nessa tela você pode cadastrar as compras das suas ações.
+            Nessa tela você pode cadastrar as compras das suas {{titulo}}.
         </div>
     </div>
     <div class="card mb-6 " id="mainContent" >
         <div class="card-header sub-titulo" >
             <!-- <i class="fas fa-table me-1"></i> -->
             <i class="fas-sharp fa-solid fa-plus" style="color: #1f2123;"></i>
-            Cadatro Ações
+            Cadatro {{titulo}}
         </div>
         <form   action="/acoes"  method="post">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" name="nome_acao" id="inputFirstName" type="text" placeholder="Nome da Ação" />
-                        <label for="inputFirstName">*Nome da Ação</label>
+                        <label for="inputFirstName">*Nome da {{titulo}}</label>
                     </div>
                 </div> 
                <div class="col-md-6">
                     <div class="form-floating">
                         <input class="form-control" name="codigo_acao"  id="inputLastName" type="text" placeholder="Enter your last name" />
-                        <label for="inputLastName">*Código da Ação</label>
+                        <label for="inputLastName">*Código da {{titulo}}</label>
                     </div>
                 </div>
             </div>
@@ -78,8 +78,8 @@
         <div class="card mb-4  card-tabela">
         <!-- Tabelas -->
         <div class="card-header sub-titulo" >
-            <!-- <i class="fas fa-table me-1"></i> -->
-            Ações
+            <i class="fas-sharp fa-solid fa-bolt"></i>
+            Minhas {{titulo}}
         </div>
         <table id="datatablesSimple">
             <thead>
