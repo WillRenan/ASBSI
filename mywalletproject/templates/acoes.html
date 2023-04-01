@@ -9,6 +9,7 @@
     }
     .card-tabela{
         margin-top: 10px;
+        padding: 10px;
     }
 
     .sub-titulo{
@@ -111,7 +112,7 @@
             {% for a in acoes%}
                 <tr>
                     <td>{{a.id}}</td>
-                    <td>{{a.nome}}</td>
+                    <td>{{a.nome_acao}}</td>
                     <td>{{a.codigo_acao}}</td>
                     <td>{{a.quantidade}}</td>
                     <td> R${{a.preco_unitario}}</td>

@@ -43,49 +43,16 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for('index'))
         return render_template('edit.html', usuario = usuario)
-    @app.route("/")
-    @app.route('/login', methods =['GET','POST'])
-    def login():
 
-        if request.method == 'POST':
-
-            email = request.form['email']
-            senha = request.form['senha']
-            user = User.query.filter_by(email=email).first()
-            
-
-            if user and check_password_hash(user.senha, senha):
-                print("Senha correta!")
-                login_user(user)
-                return redirect(url_for('index'))
-                
-            else:
-                abort(404)
-                return redirect(url_for('login'))
-
-        return render_template('login.html')
-
-
-    @app.route('/cadastrousuario', methods =['GET','POST'])
-    def cadastro():
-        if request.method == 'POST':
-            
-            usuario = User(request.form['nome'],request.form['email'],request.form['senha'])
-            db.session.add(usuario)
-            db.session.commit()
-            return redirect(url_for('login'))
-        
-
-
-        return render_template('cadastrousuario.html')
 
 
     @app.route('/logout')
     def logout():
         logout_user()
-        return redirect(url_for('login'))
+        return redirect(url_for('login_temp'))
     
     """ ------------------------------------------------- rotas dos templates-------------------------------------------- """
+    @app.route("/")
     @app.route('/login_temp', methods =['GET','POST'])
     def login_temp():
         print("www")
@@ -99,13 +66,18 @@ def init_app(app):
             if user and check_password_hash(user.senha, senha):
                 print("Senha correta!")
                 login_user(user)
-                return redirect(url_for('index'))
+                return redirect(url_for('index_temp'))
                 
             else:
                 abort(404)
                 return redirect(url_for('login_temp'))
 
         return render_template('login_temp.html')
+    
+    
+    @app.route('/index_temp')
+    def index_temp():
+        return render_template('index_temp.html')
     
     @app.route('/cadastro_usuario_temp', methods =['GET','POST'])
     def cadastro_usuario_temp():
@@ -153,3 +125,6 @@ def init_app(app):
         usuario = current_user.id
         return render_template('acoes.html', titulo =titulo,usuario= usuario,acoes=acoes)
 
+    @app.route('/fundo_imobiliario')
+    def fundo_imobiliario():
+        return render_template('fundo_imobiliario.html')
