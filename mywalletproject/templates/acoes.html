@@ -5,7 +5,12 @@
 <style>
     #mainContent{
         padding: 15px;
+        
     }
+    .card-tabela{
+        margin-top: 10px;
+    }
+
     .sub-titulo{
         margin: 15px 0 ;
     }
@@ -20,9 +25,7 @@
     </ol>
     <div class="card mb-4">
         <div class="card-body">
-            DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-            <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
-            .
+            Nessa tela você pode cadastrar as compras das suas ações.
         </div>
     </div>
     <div class="card mb-6 " id="mainContent" >
@@ -33,47 +36,46 @@
         </div>
         <form   action="/acoes"  method="post">
             <div class="row mb-3">
-                <!-- <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-floating mb-3 mb-md-0">
                         <input class="form-control" name="nome_acao" id="inputFirstName" type="text" placeholder="Nome da Ação" />
-                        <label for="inputFirstName">Nome da Ação</label>
+                        <label for="inputFirstName">*Nome da Ação</label>
                     </div>
-                </div> -->
-                <!-- <div class="col-md-6">
+                </div> 
+               <div class="col-md-6">
                     <div class="form-floating">
-                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
-                        <label for="inputLastName">Last name</label>
-                    </div>
-                </div> -->
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" name="codigo_acao" id="inputEmail" type="text" placeholder="Cogido da ação" />
-                <label for="inputEmail">Código da Ação</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" name="nome_acao" id="inputEmail" type="text" placeholder="Cogido da ação" />
-                <label for="inputEmail">Ação</label>
-            </div>
-            <!-- <div class="row mb-3">
-                <div class="col-md-6">
-                    <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                        <label for="inputPassword">Password</label>
+                        <input class="form-control" name="codigo_acao"  id="inputLastName" type="text" placeholder="Enter your last name" />
+                        <label for="inputLastName">*Código da Ação</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="quantidade" id="inputEmail" type="text" placeholder="Cogido da ação" />
+                <label for="inputEmail">*Quantidade</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" name="preco_unitario" id="inputEmail" type="text" placeholder="Cogido da ação" />
+                <label for="inputEmail">*Preço Unitário</label>
+            </div>
+             <div class="row mb-3">
+                <div class="col-md-12">
                     <div class="form-floating mb-3 mb-md-0">
-                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                        <label for="inputPasswordConfirm">Confirm Password</label>
+                        <input class="form-control"  name="data_compra" id="inputPassword" type="text" placeholder="Data" />
+                        <label for="inputPassword">*Data da compra</label>
                     </div>
                 </div>
-            </div> -->
+                
+            </div> 
             <div class="mt-4 mb-0">
                 <div class="row col xs-6">
                     <button type="submit" class="btn bnt-block btn-success">Salvar</button>
                 </div>
             </div>
         </form>
+
+    </div>
+        <div class="card mb-4  card-tabela">
+        <!-- Tabelas -->
         <div class="card-header sub-titulo" >
             <!-- <i class="fas fa-table me-1"></i> -->
             Ações
@@ -83,25 +85,28 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Senha</th>
-                    <th>Ação</th>
+                    <th>Código</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unidade</th>
+                    <th>Data Compra</th>
+
                    
                 </tr>
             </thead>
             <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>>Nome/th>
-                    <th>E-mail</th>
-                    <th>Senha</th>
-                    <th>Ação</th>
+                    <th>Nome</th>
+                    <th>Código</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unidade</th>
+                    <th>Data Compra</th>
                     
                 </tr>
             </tfoot>
             <tbody>
                
-                    {% for u in acoes%}
+                    <!-- {% for u in acoes%}
             <tr>
                 <td>{{u.id}}</td>
                 <td>{{u.nome}}</td>
@@ -112,7 +117,7 @@
                     <a href="/delete/{{u.id}}"> Deletar</a>
                 </td>
             </tr>
-            {%endfor%}
+            {%endfor%} -->
                    
                 
             </tbody>

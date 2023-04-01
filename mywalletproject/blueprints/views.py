@@ -135,7 +135,11 @@ def init_app(app):
         titulo = "Ações"
         if request.method == 'POST':
             #usuario = User.query.get(current_user.id)  # busca o usuário com id 
-            acao = Acoes(request.form['nome_acao'], request.form['codigo_acao'],
+            acao = Acoes(nome_acao=request.form['nome_acao'], 
+                         codigo_acao=request.form['codigo_acao'],
+                         quantidade=request.form['quantidade'],
+                         preco_unitario=request.form['preco_unitario'],
+                         data_compra=request.form['data_compra'] ,   
                          usuario_id=current_user.id)
 
 
