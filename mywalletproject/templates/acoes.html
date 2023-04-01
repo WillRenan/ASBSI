@@ -89,6 +89,7 @@
                     <th>Quantidade</th>
                     <th>Preço Unidade</th>
                     <th>Data Compra</th>
+                    <th>^</th>
 
                    
                 </tr>
@@ -101,23 +102,26 @@
                     <th>Quantidade</th>
                     <th>Preço Unidade</th>
                     <th>Data Compra</th>
+                    <th>^</th>
                     
                 </tr>
             </tfoot>
             <tbody>
                
-                    <!-- {% for u in acoes%}
-            <tr>
-                <td>{{u.id}}</td>
-                <td>{{u.nome}}</td>
-                <td>{{u.email}}</td>
-                <td>{{u.senha}}</td>
-                <td>
-                    <a href="/edit/{{u.id}}"> Editar</a>
-                    <a href="/delete/{{u.id}}"> Deletar</a>
-                </td>
-            </tr>
-            {%endfor%} -->
+            {% for a in acoes%}
+                <tr>
+                    <td>{{a.id}}</td>
+                    <td>{{a.nome}}</td>
+                    <td>{{a.codigo_acao}}</td>
+                    <td>{{a.quantidade}}</td>
+                    <td> R${{a.preco_unitario}}</td>
+                    <td>{{a.data_compra}}</td>
+                    <td>
+                        <a href="/edit/{{a.id}}"> Editar</a>
+                        <a href="/delete/{{a.id}}"> Deletar</a>
+                    </td>
+                </tr>
+            {%endfor%}
                    
                 
             </tbody>

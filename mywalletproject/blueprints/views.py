@@ -148,6 +148,8 @@ def init_app(app):
             db.session.commit()
             return redirect(url_for('acoes'))
         
+        acoes = Acoes.query.filter_by(usuario_id=current_user.id).all()
+        
         usuario = current_user.id
-        return render_template('acoes.html', titulo =titulo,usuario= usuario)
+        return render_template('acoes.html', titulo =titulo,usuario= usuario,acoes=acoes)
 
