@@ -108,20 +108,20 @@
             </tfoot>
             <tbody>
                
-         <!--    {% for a in acoes%}
+            {% for f in fundosImobiliarios%}
                 <tr>
-                    <td>{{a.id}}</td>
-                    <td>{{a.nome_acao}}</td>
-                    <td>{{a.codigo_acao}}</td>
-                    <td>{{a.quantidade}}</td>
-                    <td> R${{a.preco_unitario}}</td>
-                    <td>{{a.data_compra}}</td>
+                    <td>{{f.id}}</td>
+                    <td>{{f.nome_fii}}</td>
+                    <td>{{f.codigo_fii}}</td>
+                    <td>{{f.quantidade}}</td>
+                    <td> R${{f.preco_unitario}}</td>
+                    <td>{{f.data_compra}}</td>
                     <td>
-                        <a href="/edit/{{a.id}}"> Editar</a>
-                        <a href="/delete/{{a.id}}"> Deletar</a>
+                        <a href="/edit/{{f.id}}"> Editar</a>
+                        <a href="/delete/{{f.id}}"> Deletar</a>
                     </td>
                 </tr>
-            {%endfor%} -->
+            {%endfor%}
                    
                 
             </tbody>
