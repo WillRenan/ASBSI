@@ -117,8 +117,8 @@
                     <td> R${{f.preco_unitario}}</td>
                     <td>{{f.data_compra}}</td>
                     <td>
-                        <a href="/edit_fundo/{{f.id}}"> Editar</a>
-                        <a href="/delete/fundos/{{f.id}}"> Deletar</a>
+                        <a class="btn btn-primary" href="/edit_fundo/{{f.id}}"> Editar</a>
+                        <a class="btn btn-danger" href="/delete/fundos/{{f.id}}"> Deletar</a>
                     </td>
                 </tr>
             {%endfor%}

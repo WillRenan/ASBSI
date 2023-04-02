@@ -6,40 +6,6 @@ from ..ext.database import User, Acoes,  FundosImobiliarios, db, check_password_
 
 def init_app(app):
         
-    @app.route("/index")
-    @login_required
-    def index():
-        usuarios = User.query.all()
-        return render_template("index.html", usuarios=usuarios)
-
-
-    @app.route("/add", methods=["GET","POST"])
-    def add():
-        if request.method == 'POST':
-            usuario = User(request.form['nome'],request.form['email'],request.form['senha'])
-            db.session.add(usuario)
-            db.session.commit()
-            return redirect(url_for('index'))
-        return render_template('add.html')
-
-
-    
-
-
-    @app.route('/edit/<int:id>', methods =['GET','POST'])
-    def edit(id):
-        usuario = User.query.get(id)
-        if request.method == 'POST':
-            print(usuario.nome)
-            usuario.nome = request.form['nome']
-            usuario.email = request.form['email']
-            usuario.senha = request.form['senha']
-            db.session.commit()
-            return redirect(url_for('index'))
-        return render_template('edit.html', usuario = usuario)
-
-
-
     @app.route('/logout')
     def logout():
         logout_user()
