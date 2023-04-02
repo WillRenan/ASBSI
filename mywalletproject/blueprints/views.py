@@ -77,7 +77,13 @@ def init_app(app):
     
     @app.route('/index_temp')
     def index_temp():
-        return render_template('index_temp.html')
+        fundosImobiliarios = FundosImobiliarios.query.all()
+        acoes = Acoes.query.all()
+        usuario = current_user
+        return render_template('index_temp.html', acoes=acoes, fundosImobiliarios=fundosImobiliarios, usuario=usuario)
+    
+    
+    
     
     @app.route('/cadastro_usuario_temp', methods =['GET','POST'])
     def cadastro_usuario_temp():
@@ -92,11 +98,17 @@ def init_app(app):
 
         return render_template('cadastro_usuario_temp.html')
     
-    @app.route('/usuarios_tabelas_temp')
+    @app.route('/usuarios_tabelas_temp', methods =['GET','POST'])
     @login_required
     def usuarios_tabelas_temp():
         usuarios = User.query.all()
-        return render_template( 'usuarios_tabelas_temp.html',usuarios =usuarios)
+        fundosImobiliarios = FundosImobiliarios.query.all()
+        acoes = Acoes.query.all()
+
+        return render_template( 'usuarios_tabelas_temp.html',
+                               usuarios =usuarios,
+                               fundosImobiliarios=fundosImobiliarios,
+                               acoes=acoes)
     
     @app.route('/template_base')
     @login_required
@@ -106,8 +118,9 @@ def init_app(app):
     @app.route('/acoes', methods =['GET','POST'])
     @login_required
     def acoes():
-        titulo = "Ações  "
-        usuario = current_user.id
+        titulo = "Ações"
+        tituloSingular = "Ação"
+        usuario = current_user
 
         if request.method == 'POST':
             acao = Acoes(nome_acao=request.form['nome_acao'], 
@@ -124,7 +137,11 @@ def init_app(app):
         
         acoes = Acoes.query.filter_by(usuario_id=current_user.id).all()
         
-        return render_template('acoes.html', titulo =titulo,usuario= usuario,acoes=acoes)
+        return render_template('acoes.html', 
+                               titulo =titulo,
+                               usuario= usuario,
+                               acoes=acoes,
+                               tituloSingular=tituloSingular)
 
     @app.route('/fundo_imobiliario', methods=['GET','POST'])
     @login_required
