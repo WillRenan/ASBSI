@@ -55,7 +55,7 @@ def init_app(app):
     @app.route("/")
     @app.route('/login_temp', methods =['GET','POST'])
     def login_temp():
-        print("www")
+        #print("www")
         if request.method == 'POST':
 
             email = request.form['email']
@@ -70,10 +70,13 @@ def init_app(app):
                 
             else:
                 abort(404)
-                return redirect(url_for('login_temp'))
+                return redirect(url_for('erro_404'))
 
         return render_template('login_temp.html')
     
+    @app.route('/404')
+    def erro_404():
+        return render_template('404.html')
     
     @app.route('/index_temp')
     def index_temp():
@@ -87,23 +90,33 @@ def init_app(app):
         }
 
         total_acoes = 0.0
+        total_quant_acoes = 0 
         for acao in acoes:
            total_acoes += acao.quantidade * acao.preco_unitario
+           total_quant_acoes += acao.quantidade
 
         total_fundos = 0.0
+        total_quant_fundos =0
         for fundo in fundosImobiliarios:
            total_fundos += fundo.quantidade * fundo.preco_unitario
+           total_quant_fundos += fundo.quantidade
         
 
         total_acoes = round(total_acoes, 2)
+        total_acoes = str(total_acoes).replace('.', ',')
+
         total_fundos = round(total_fundos, 2)
+        total_fundos = str(total_fundos).replace('.', ',')
+
 
         return render_template('index_temp.html',
                                 acoes=acoes,
                                 fundosImobiliarios=fundosImobiliarios,
                                 usuario=usuario,
                                 total_acoes=total_acoes,
-                                total_fundos=total_fundos)  
+                                total_fundos=total_fundos,
+                                total_quant_acoes=total_quant_acoes,
+                                total_quant_fundos =total_quant_fundos )  
     
 
 

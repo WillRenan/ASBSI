@@ -17,6 +17,7 @@
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body"><i class="fas-sharp fa-solid fa-bolt"></i> Ações</div>
+                <h5 style="margin-left: 15px;">Quantidade: {{total_quant_acoes}}</h5>
                 <h2 class="card-body">R$ {{total_acoes}}</h2>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     
@@ -29,7 +30,9 @@
             <div class="card bg-warning text-white mb-4">
                 
                 <div class="card-body" style=" color:black"> <i class="fa-solid fa-building"></i> Fundos Imobiliários</div>
+                <h5 style="margin-left: 15px; color: black;">Quantidade: {{total_quant_fundos }}</h5>
                 <h2 class="card-body"style=" color:black"> R$ {{total_fundos}} </h2>
+                
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <a class="small text-white stretched-link" href="/fundo_imobiliario" style=" color:black">Ver Fundos Imobiliários</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -88,36 +91,47 @@
             <table id="datatablesSimple">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unidade</th>
+                        <th>Data Compra</th>
+                        
+    
+                       
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unidade</th>
+                        <th>Data Compra</th>
+                        
+                        
                     </tr>
                 </tfoot>
                 <tbody>
+                   
+                {% for a in acoes%}
                     <tr>
-                        <td>Finn Camacho</td>
-                        <td>Support Engineer</td>
-                        <td>San Francisco</td>
-                        <td>47</td>
-                        <td>2009/07/07</td>
-                        <td>$87,500</td>
+                        <td>{{a.id}}</td>
+                        <td>{{a.nome_acao}}</td>
+                        <td>{{a.codigo_acao}}</td>
+                        <td>{{a.quantidade}}</td>
+                        <td> R${{a.preco_unitario}}</td>
+                        <td>{{a.data_compra}}</td>
+                        
                     </tr>
+                {%endfor%}
+                       
                     
                 </tbody>
             </table>
+            
             <div>
                 
             </div>
