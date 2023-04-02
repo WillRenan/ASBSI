@@ -23,13 +23,7 @@ def init_app(app):
         return render_template('add.html')
 
 
-    @app.route('/delete/<int:id>')
-    def delete(id):
-        usuario = User.query.get(id)
-        print(usuario)
-        db.session.delete(usuario)
-        db.session.commit()
-        return redirect(url_for('index'))
+    
 
 
     @app.route('/edit/<int:id>', methods =['GET','POST'])
@@ -194,7 +188,8 @@ def init_app(app):
         usuario = current_user
 
         if request.method == 'POST':
-            fundos = FundosImobiliarios(nome_fii=request.form['nome_fii'], 
+            fundos = FundosImobiliarios(
+                         nome_fii=request.form['nome_fii'], 
                          codigo_fii=request.form['codigo_fii'],
                          quantidade=request.form['quantidade'],
                          preco_unitario=request.form['preco_unitario'],
@@ -213,3 +208,39 @@ def init_app(app):
                                titulo=titulo,
                                tituloSingular=tituloSingular,
                                fundosImobiliarios=fundosImobiliarios)
+    
+
+
+    # edidar
+    
+    @app.route('/edit_fundo/<int:id>', methods =['GET','POST'])
+    def edit_fundo(id):
+        fundo= FundosImobiliarios.query.get(id)
+        if request.method == 'POST':
+
+            fundo.nome_fii=request.form['nome_fii'], 
+            fundo.codigo_fii=request.form['codigo_fii'],
+            fundo.quantidade=request.form['quantidade'],
+            fundo.preco_unitario=request.form['preco_unitario'],
+            fundo.data_compra=request.form['data_compra'] 
+
+            db.session.commit()
+            return redirect(url_for('fundo_imobiliario'))
+        usuario = current_user
+        return render_template('editar_fundos.html', fundo = fundo)
+    
+
+    #deletar
+    @app.route('/delete/<tipo>/<int:id>')
+    def delete(tipo,id):
+        
+        if tipo == 'fundos':
+            fundo = FundosImobiliarios.query.get(id)
+            db.session.delete(fundo)
+        elif tipo == 'acao':
+            acao = Acoes.query.get(id)
+            db.session.delete(acao)
+
+        
+        db.session.commit()
+        return redirect(url_for('fundo_imobiliario'))
