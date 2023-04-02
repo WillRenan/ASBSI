@@ -1,4 +1,4 @@
-from flask import  abort, render_template, redirect, Response, request, url_for
+from flask import  abort, render_template, redirect, Response, request, url_for,jsonify
 from ..ext.auth import login_required, logout_user, login_user, load_user,current_user
 from curses import flash
 
@@ -77,11 +77,41 @@ def init_app(app):
     
     @app.route('/index_temp')
     def index_temp():
-        fundosImobiliarios = FundosImobiliarios.query.all()
-        acoes = Acoes.query.all()
-        usuario = current_user
-        return render_template('index_temp.html', acoes=acoes, fundosImobiliarios=fundosImobiliarios, usuario=usuario)
+        fundosImobiliarios = FundosImobiliarios.query.filter_by(usuario_id=current_user.id).all()
+        acoes = Acoes.query.filter_by(usuario_id=current_user.id).all()
+        usuario =current_user
+
+        data = {
+             'fundosImobiliarios': [f.to_dict() for f in fundosImobiliarios],
+             'acoes': [a.to_dict() for a in acoes]
+        }
+
+        total_acoes = 0.0
+        for acao in acoes:
+           total_acoes += acao.quantidade * acao.preco_unitario
+
+        total_fundos = 0.0
+        for fundo in fundosImobiliarios:
+           total_fundos += fundo.quantidade * fundo.preco_unitario
+        
+
+        total_acoes = round(total_acoes, 2)
+        total_fundos = round(total_fundos, 2)
+
+        return render_template('index_temp.html',
+                                acoes=acoes,
+                                fundosImobiliarios=fundosImobiliarios,
+                                usuario=usuario,
+                                total_acoes=total_acoes,
+                                total_fundos=total_fundos)  
     
+
+
+
+
+
+
+
     
     
     
