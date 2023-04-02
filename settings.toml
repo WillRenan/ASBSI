@@ -1,4 +1,18 @@
 [default]
 SQLALCHEMY_DATABASE_URI = 'sqlite:///mywallet.sqlite3'
 SECRETY_KEY = "007"
-  
+
+EXTENSIONS = [
+"mywalletproject.ext.database",
+
+"mywalletproject.ext.auth",
+"mywalletproject.ext.bootstrap",
+"mywalletproject.ext.commands",
+
+"mywalletproject.blueprints.restapi",
+"mywalletproject.blueprints.views"
+]
+
+
+[production]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///...'
