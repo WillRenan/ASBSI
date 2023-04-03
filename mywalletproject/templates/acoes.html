@@ -118,8 +118,8 @@
                     <td> R${{a.preco_unitario}}</td>
                     <td>{{a.data_compra}}</td>
                     <td>
-                        <a href="/edit/{{a.id}}"> Editar</a>
-                        <a href="/delete/acao/{{a.id}}"> Deletar</a>
+                        <a class="btn btn-primary"    href="/edit/{{a.id}}"> Editar</a>
+                        <a class="btn btn-danger" href="/delete/acao/{{a.id}}"> Deletar</a>
                     </td>
                 </tr>
             {%endfor%}
